@@ -121,27 +121,27 @@ bindsym $mod+a focus parent
 set $ws1 ""
 set $ws2 ""
 set $ws3 "魯"
-set $ws4 ""
+set $ws4 ""
 set $ws5 ""
-set $ws6 "6"
+set $ws6 "戮"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 ""
 
 #assign workspaces to screens
-workspace $ws1 output DP-4
-workspace $ws2 output DP-2
-workspace $ws3 output DP-2
-workspace $ws4 output DP-4
-workspace $ws5 output DP-4
+#workspace $ws1 output DP-4
+#workspace $ws2 output DP-2
+#workspace $ws3 output DP-2
+#workspace $ws4 output DP-4
+#workspace $ws5 output DP-4
 
 #auto assign programs to workspaces
 assign [class="Chromium"] $ws1
 assign [class="spotify-tui"] $ws2
 assign [class="htop"] $ws2
 assign [class="discord"] $ws3
-assign [class="Steam"] $ws4
+assign [class="Steam"] $ws6
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -225,12 +225,18 @@ exec_always feh --bg-fill /home/ryan/wallpaper.png
 exec picom
 
 #flameshot screenshot
+exec flameshot
 bindsym $mod+Print exec flameshot full -d 1 -p /home/ryan/Pictures/screenshots -u
-bindsym $mod+Control+Print exec flameshot gui -d 1 -p /home/ryan/Pictures/screenshots -u
+bindsym $mod+Control+Print exec flameshot gui -d 1 -p /home/ryan/Pictures/screenshots -u -c
 
 #make steam floating windows
 for_window [class="Steam"] floating enable
 for_window [class="Steam" title="^Steam$"] floating disable
+#origin floating windows
+for_window [instance="origin.exe"] floating enable
 
 #auto launch firefox, i always use it anyway
-exec flatpak run org.mozilla.firefox
+exec firefox
+
+#auto launch discord too, i also always use this anyway
+exec discord
